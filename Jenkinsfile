@@ -19,7 +19,7 @@ pipeline {
         }
         stage("Push docker image") {
             steps {
-                sh("sudo docker push njogani/swe645_hw2:${BUILD_TIMESTAMP}")
+                sh("docker push njogani/swe645_hw2:${BUILD_TIMESTAMP}")
             }
         }
         stage("Deploy docker image to rancher cluster with 3 pod using nodeport") {
