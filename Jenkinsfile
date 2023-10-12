@@ -14,7 +14,7 @@ pipeline {
                 sh 'cd src/main/webapp && jar -cvf Student_Survey.war *'
                 sh("docker build --tag njogani/swe645_hw2:${BUILD_TIMESTAMP} .")
                 sh("echo ${BUILD_TIMESTAMP}")
-                sh('sudo docker login -u njogani -p "${DOCKERHUB_PASS}"')
+                sh('docker login -u njogani -p "${DOCKERHUB_PASS}"')
             }   
         }
         stage("Push docker image") {
