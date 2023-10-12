@@ -12,7 +12,7 @@ pipeline {
                 sh 'ls -al'
                 sh 'pwd'
                 sh 'cd src/main/webapp && jar -cvf Student_Survey.war *'
-                sh("sudo -S docker build --tag njogani/swe645_hw2:${BUILD_TIMESTAMP} .")
+                sh("docker build --tag njogani/swe645_hw2:${BUILD_TIMESTAMP} .")
                 sh("echo ${BUILD_TIMESTAMP}")
                 sh('sudo docker login -u njogani -p "${DOCKERHUB_PASS}"')
             }   
