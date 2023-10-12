@@ -2,6 +2,7 @@
 pipeline {
     agent any
     environment {
+        BUILD_TIMESTAMP = "${new java.text.SimpleDateFormat('yyyyMMddHHmm').format(new Date())}"
         DOCKERHUB_PASS = credentials('docker-cred') 
     }
     stages {
