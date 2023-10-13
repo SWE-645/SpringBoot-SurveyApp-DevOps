@@ -20,17 +20,16 @@ pipeline {
         stage("Checkout") {
             steps {
                 checkout scm
-                sh 'sudo su'
                 sh 'ls -al'
                 sh 'pwd'
                 sh 'cd src/main/webapp && jar -cvf Student_Survey.war *'
-                sh("docker build --tag njogani/swe645_hw2:${BUILD_TIMESTAMP} .")
+                sh("sudo -S docker build --tag njogani/swe645_hw2:${BUILD_TIMESTAMP} .")
                 sh("echo ${BUILD_TIMESTAMP}")
             }   
         }
         stage("Push docker image") {
             steps {
-                sh("docker push njogani/swe645_hw2:${BUILD_TIMESTAMP}")
+                sh("sudo docker push njogani/swe645_hw2:${BUILD_TIMESTAMP}")
             }
         }
         stage("Deploy docker image to rancher cluster with 3 pod using nodeport") {
