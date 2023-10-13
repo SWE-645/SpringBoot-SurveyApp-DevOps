@@ -20,6 +20,7 @@ pipeline {
         stage("Checkout") {
             steps {
                 checkout scm
+                sh 'sudo su'
                 sh 'ls -al'
                 sh 'pwd'
                 sh 'cd src/main/webapp && jar -cvf Student_Survey.war *'
