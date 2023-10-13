@@ -6,6 +6,17 @@ pipeline {
         DOCKERHUB_PASS = credentials('docker-cred') 
     }
     stages {
+        stage('Docker Login') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'docker-cred', passwordVariable: 'DOCKERHUB_PASS', usernameVariable: 'DOCKERHUB_USER')]) {
+                        sh '''#!/bin/bash
+                            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USER" --password-stdin
+                        '''
+                    }
+                }
+            }
+        }
         stage("Checkout") {
             steps {
                 checkout scm
@@ -14,7 +25,6 @@ pipeline {
                 sh 'cd src/main/webapp && jar -cvf Student_Survey.war *'
                 sh("docker build --tag njogani/swe645_hw2:${BUILD_TIMESTAMP} .")
                 sh("echo ${BUILD_TIMESTAMP}")
-                sh('docker login -u njogani -p "${DOCKERHUB_PASS}"')
             }   
         }
         stage("Push docker image") {
