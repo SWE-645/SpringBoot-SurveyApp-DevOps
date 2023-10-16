@@ -28,12 +28,14 @@
    ssh -i /path/to/your-key.pem ec2-user@ec2-instance-public-ip
 
 2. **Install Docker**
-
+   
+    ```bash
     sudo apt-get update
     sudo apt-get install -y docker.io
 
-3. **Install Rancher**
-
+4. **Install Rancher**
+   
+    ```bash
     sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher
 
 ## Step 2: Install Rancher on AWS EC2 Instance
@@ -61,6 +63,7 @@ This guide will walk you through setting up Jenkins on an AWS EC2 instance, esta
 
 2. **Retrieve the initial admin password:**
 
+    ```bash
     sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 ## Step 3: Set Up CI/CD Pipeline with Jenkinsfile and Dockerfile
