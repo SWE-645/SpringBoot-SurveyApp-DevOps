@@ -10,7 +10,7 @@
 
 ## Contributors
 
-    - Nimitkumar Jogani (G01379296)
+    - Nimit Jogani (G01379296)
     - Sourav Singh  (G01390520)
     - Divyansh Joshi (G01399172)
 
